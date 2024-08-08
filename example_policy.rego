@@ -4,10 +4,8 @@ import rego.v1
 
 default allow := false
 
-violation contains input.user.role if {
-	input.user.role != "admin"
-}
+allowed_roles := ["admin", "user"]
 
 allow if {
-	count(violation) == 0
+	input.user.role in allowed_roles
 }
