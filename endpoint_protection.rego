@@ -20,12 +20,6 @@ is_token_valid if {
 }
 
 action_allowed if {
-	http_request.method == "POST"
-	token.payload.role == "admin"
-	glob.match("/app", ["/"], http_request.path)
-}
-
-action_allowed if {
 	http_request.method == "GET"
 	token.payload.role == "admin"
 	glob.match("/app", ["/"], http_request.path)
