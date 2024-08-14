@@ -5,20 +5,23 @@ import rego.v1
 default allow := false
 
 allow if {
-	is_allowed_action
-	is_app
+	is_action_allowed
+    is_allowed_path
     is_admin
 }
 
-allowed_actions := ["GET", "POST"]
+allowed_actions := ["POST", "GET"]
 
+is_action_allowed if input.attributes.request.http.method in allowed_actions
+is_allowed_path if {
+    glob.match("/app*", ["."], input.attributes.request.http.path)
+}
 is_admin if claims.role == "admin"
 
-is_allowed_action if input.attributes.request.http.method in allowed_actions
 
-is_app if {
-	glob.match("/app*", ["."], input.attributes.request.http.path)
-}
+
+
+
 
 claims := payload if {
 	# Verify the signature on the Bearer token. In this example the secret is
