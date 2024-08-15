@@ -6,11 +6,11 @@ default allow := false
 
 allow if {
 	is_action_allowed
-	#is_allowed_path
-	#is_admin
+	is_allowed_path
+	is_admin
 }
 
-allowed_actions := ["GET"]
+allowed_actions := ["GET", "POST"]
 
 is_action_allowed if input.attributes.request.http.method in allowed_actions
 
