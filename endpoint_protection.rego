@@ -1,7 +1,6 @@
 # policy.rego
 package envoy.authz
-import future.keywords.if
-import future.keywords.in
+import rego.v1
 
 default allow := false
 
