@@ -6,8 +6,8 @@ default allow := false
 
 allow if {
 	is_action_allowed
-	is_allowed_path
-	is_admin
+	#is_allowed_path
+	#is_admin
 }
 
 allowed_actions := ["POST", "GET"]
