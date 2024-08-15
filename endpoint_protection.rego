@@ -10,7 +10,7 @@ allow if {
 	#is_admin
 }
 
-allowed_actions := ["POST", "GET"]
+allowed_actions := ["GET"]
 
 is_action_allowed if input.attributes.request.http.method in allowed_actions
 
