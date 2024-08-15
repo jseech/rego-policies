@@ -12,9 +12,9 @@ allow if {
 
 allowed_actions := ["POST", "GET"]
 
-is_action_allowed if input.attributes.request.http.method in allowed_actions
+is_action_allowed if input.attributes.request.http.headers[":method"] in allowed_actions
 is_allowed_path if {
-    glob.match("/app*", ["."], input.attributes.request.http.path)
+    glob.match("/app*", ["."], input.attributes.request.http.headers[":path"])
 }
 is_admin if claims.role == "admin"
 
